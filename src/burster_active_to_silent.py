@@ -6,8 +6,8 @@ from matplotlib import pyplot as plt
 
 class NeuralBursterAS():
     def __init__(self, dt, tau, alpha, beta, lmbd):
-        self.v = 0.1 * np.random.rand()
-        self.h = np.random.rand()
+        self.v = 8.3
+        self.h = 3.8
         self.tau = tau
         self.alpha = alpha
         self.beta = beta
@@ -63,3 +63,23 @@ if __name__ == '__main__':
         burster.run(T_steps)
         fig = burster.plot_history()
         plt.show()
+
+        #plotting the phase plane
+        v_array = np.array(burster.v_history)
+        h_array = np.array(burster.h_history)
+        x = np.linspace(-12,12,1000)
+        u_null_v = alpha * x - beta * x ** 3 + 4
+        u_null_h = lmbd * x + 7
+        plt.plot(x, u_null_v, linewidth = 2, color = 'skyblue', label="v-nullcline")
+        plt.plot(x, u_null_h, linewidth = 2, color = 'orange', label="h-nullcline")
+
+        plt.plot(v_array[::5], h_array[::5],  color = 'k', alpha = 0.2)
+        plt.grid(True)
+        plt.legend(fontsize = 16)
+        plt.xlabel("v", fontsize=16)
+        plt.ylabel("h", fontsize=16)
+        plt.ylim([3,5])
+        # plt.axis('off')
+        plt.show()
+
+

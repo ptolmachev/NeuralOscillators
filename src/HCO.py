@@ -17,8 +17,8 @@ class HCO():
 
     def rhs(self):
         v1, v2, m1, m2 = self.state
-        rhs_v_1 = (-0.1 * v1 - 10 * m1 + self.drives[0] - self.W[1] * firing_rate(v2) - 2)
-        rhs_v_2 = (-0.1 * v2 - 10 * m2 + self.drives[1] - self.W[0] * firing_rate(v1) - 2)
+        rhs_v_1 = (-0.01 * v1 - m1 + self.drives[0] - self.W[1] * firing_rate(v2))
+        rhs_v_2 = (-0.01 * v2 - m2 + self.drives[1] - self.W[0] * firing_rate(v1))
         rhs_m_1 = (firing_rate(v1) - m1) / self.tau
         rhs_m_2 = (firing_rate(v2) - m2) / self.tau
         return np.array([rhs_v_1, rhs_v_2, rhs_m_1, rhs_m_2])
@@ -77,11 +77,11 @@ class HCO():
 
 
 if __name__ == '__main__':
-    dt = 0.1
-    weights = np.array([8, 6])
-    drives = 5 * np.ones(2)
-    tau = 2000
-    T_steps = int(10000/dt)
+    dt = 1
+    weights = np.array([0.8, 0.6])
+    drives = 0.3 * np.ones(2)
+    tau = 5000
+    T_steps = int(30000/dt)
     hco = HCO(dt, weights, drives, tau)
     hco.run(T_steps)
     hco.plot_history()
