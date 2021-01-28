@@ -2,7 +2,7 @@ import numpy as np
 from collections import deque
 from copy import deepcopy
 from matplotlib import pyplot as plt
-
+import os
 
 class NeuralBursterAS():
     def __init__(self, dt, tau, alpha, beta, lmbd):
@@ -62,6 +62,7 @@ if __name__ == '__main__':
         burster = NeuralBursterAS(dt, tau, alpha, beta, lmbd)
         burster.run(T_steps)
         fig = burster.plot_history()
+        plt.savefig(os.path.join("../", 'img', 'burster_active_to_silent.png'))
         plt.show()
 
         #plotting the phase plane
@@ -80,6 +81,9 @@ if __name__ == '__main__':
         plt.ylabel("h", fontsize=16)
         plt.ylim([3,5])
         # plt.axis('off')
+        plt.savefig(os.path.join("../", 'img', 'burster_active_to_silent_phase_plane.png'))
         plt.show()
+
+
 
 

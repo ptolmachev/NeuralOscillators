@@ -2,6 +2,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from collections import deque
 from copy import deepcopy
+import os
 
 class NeuralNode():
     def __init__(self, dt, a, b, c, d):
@@ -65,6 +66,7 @@ if __name__ == '__main__':
     axes[0].axis('off')
     axes[0].legend(fontsize=24)
     axes[1].legend(fontsize=24)
+    plt.savefig(os.path.join("../", 'img', 'plateau_potentials.png'))
     plt.show()
 
 
@@ -82,6 +84,7 @@ if __name__ == '__main__':
     # for ax in axes:
     plt.xticks([])
     plt.yticks([])
+    plt.savefig(os.path.join("../", 'img', 'plateau_potentials_phase_plane.png'))
     plt.show()
 
 

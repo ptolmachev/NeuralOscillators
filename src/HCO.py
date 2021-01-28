@@ -2,6 +2,7 @@ import numpy as np
 from collections import deque
 from copy import deepcopy
 from matplotlib import pyplot as plt
+import os
 
 def firing_rate(v):
     return 1.0 / (1 + np.exp(-0.3 * v))
@@ -72,8 +73,8 @@ class HCO():
 
 
         plt.suptitle("Half Centre Oscillator", fontsize = 24)
-        plt.show(block=True)
-        return None
+
+        return fig
 
 
 if __name__ == '__main__':
@@ -84,4 +85,6 @@ if __name__ == '__main__':
     T_steps = int(30000/dt)
     hco = HCO(dt, weights, drives, tau)
     hco.run(T_steps)
-    hco.plot_history()
+    fig = hco.plot_history()
+    plt.savefig(os.path.join("../", 'img', 'HCO.png'))
+    plt.show()

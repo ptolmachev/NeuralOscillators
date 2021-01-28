@@ -2,6 +2,7 @@ import numpy as np
 from collections import deque
 from copy import deepcopy
 from matplotlib import pyplot as plt
+import os
 
 def firing_rate(v):
     return 1.0 / (1 + np.exp(-v))
@@ -72,8 +73,7 @@ class SlowSynapticOscillator():
 
 
         plt.suptitle("Neural oscillations on slow mixed synaptic transmision", fontsize = 24)
-        plt.show(block=True)
-        return None
+        return fig
 
 
 if __name__ == '__main__':
@@ -101,4 +101,6 @@ if __name__ == '__main__':
     T_steps = int(10000/dt)
     sso = SlowSynapticOscillator(dt, alpha, weights, drives, tau)
     sso.run(T_steps)
-    sso.plot_history()
+    fig = sso.plot_history()
+    plt.savefig(os.path.join("../", 'img', 'slow_synaptic_oscillations.png'))
+    plt.show(block=True)

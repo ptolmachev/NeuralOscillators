@@ -13,6 +13,7 @@ from scipy.optimize import fsolve
 from scipy.linalg import eig
 import numdifftools as nd
 import warnings
+import os
 warnings.filterwarnings("ignore")
 
 # squashing state function of a neural activity ( sigma(h) )
@@ -136,6 +137,7 @@ if __name__ == '__main__':
     T = 100
     rnn.run(T)
     fig, ax = rnn.plot_history()
+    plt.savefig(os.path.join("../", 'img', 'multi_dim_oscillations.png'))
     plt.show(block=True)
 
 

@@ -2,7 +2,7 @@ import numpy as np
 from matplotlib import pyplot as plt
 from collections import deque
 from copy import deepcopy
-
+import os
 
 class PIR_node():
     def __init__(self, dt, a, b, c, d, alpha, beta):
@@ -77,6 +77,7 @@ if __name__ == '__main__':
     plt.subplots_adjust(hspace=0)
     axes[0].legend(fontsize=24)
     axes[1].legend(fontsize=24)
+    plt.savefig(os.path.join("../", 'img', 'PIR.png'))
     plt.show()
 
     # plotting the phase plane
@@ -94,4 +95,5 @@ if __name__ == '__main__':
     plt.xlabel("h", fontsize=16)
     plt.ylabel("u", fontsize=16)
     # plt.axis('off')
+    plt.savefig(os.path.join("../", 'img', 'PIR_phase_plane.png'))
     plt.show()
